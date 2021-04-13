@@ -16,8 +16,11 @@ The purpose of this API is to read a CSV data source, store the data in memory a
 
 ### API Resource
 **Request**
+
 **Method:** GET
+
 **URL:** /worstmovie-api/v1/producers/awards-range
+
 **Response data structure:**
 | Property | Type |
 |--|--|
@@ -31,6 +34,7 @@ The purpose of this API is to read a CSV data source, store the data in memory a
 | max.interval| Long |
 | max.previousWin| Long |
 | max.followingWin| Long |
+
 **Response sample:**
 ```javascript
 {
