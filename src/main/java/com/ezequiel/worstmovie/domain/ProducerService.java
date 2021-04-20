@@ -24,12 +24,17 @@ public class ProducerService {
         moviesByProducer.forEach((producer, movies) -> {
             movies.sort(Comparator.comparing(Movie::getYear));
             if (movies.size() >= AWARDS_MIN_QUANTITY) {
-                ProducerInterval interval = new ProducerInterval();
-                interval.setProducer(producer);
-                interval.setPreviousWin(movies.get(0).getYear());
-                interval.setFollowingWin(movies.get(movies.size() - 1).getYear());
-                interval.setInterval(interval.getFollowingWin() - interval.getPreviousWin());
-                intervals.add(interval);
+                movies.forEach(movie -> {
+                    Movie nextMovie = getNextMovie(movies, movie);
+                    if (nextMovie != null) {
+                        ProducerInterval interval = new ProducerInterval();
+                        interval.setProducer(producer);
+                        interval.setPreviousWin(movie.getYear());
+                        interval.setFollowingWin(nextMovie.getYear());
+                        interval.setInterval(interval.getFollowingWin() - interval.getPreviousWin());
+                        intervals.add(interval);
+                    }
+                });
             }
         });
 
@@ -50,6 +55,14 @@ public class ProducerService {
         ).collect(Collectors.toList());
 
         return new AwardInterval(minInterval, maxInterval);
+    }
+
+    private Movie getNextMovie(List<Movie> winningMovies, Movie currentMovie) {
+        int index = winningMovies.indexOf(currentMovie);
+        if (index < 0 || index + 1 == winningMovies.size()) {
+            return null;
+        }
+        return winningMovies.get(index + 1);
     }
 
 }
