@@ -1,4 +1,4 @@
-package com.ezequiel.worstmovie.interfaces;
+package com.ezequiel.worstmovie.application;
 
 import com.ezequiel.worstmovie.domain.AwardInterval;
 import com.ezequiel.worstmovie.domain.ProducerService;
@@ -19,8 +19,8 @@ public class ProducerController {
     private final ProducerConverter producerConverter;
 
     @GetMapping("/awards-range")
-    public ResponseEntity<AwardsRangeDto> findAwardsRange() {
-        AwardsRangeDto response = new AwardsRangeDto();
+    public ResponseEntity<AwardsRangeResponse> findAwardsRange() {
+        AwardsRangeResponse response = new AwardsRangeResponse();
         AwardInterval awardIntervals = producerService.getIntervalAwards();
         producerConverter.updateMinAwardsRange(response.getMin(), awardIntervals);
         producerConverter.updateMaxAwardsRange(response.getMax(), awardIntervals);

@@ -1,6 +1,6 @@
 package com.ezequiel.worstmovie;
 
-import com.ezequiel.worstmovie.interfaces.AwardsRangeDto;
+import com.ezequiel.worstmovie.application.AwardsRangeResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +27,7 @@ public class WorstMovieApplicationTests {
 
     @Test
     public void testAwardsRange() {
-        ResponseEntity<AwardsRangeDto> responseEntity = restTemplate.getForEntity(HOST + port + PRODUCERS_RESOURCE + "/awards-range", AwardsRangeDto.class);
+        ResponseEntity<AwardsRangeResponse> responseEntity = restTemplate.getForEntity(HOST + port + PRODUCERS_RESOURCE + "/awards-range", AwardsRangeResponse.class);
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         Assert.assertNotNull(responseEntity.getBody());
         Assert.assertNotNull(responseEntity.getBody().getMax());

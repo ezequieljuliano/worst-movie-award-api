@@ -1,4 +1,4 @@
-package com.ezequiel.worstmovie.interfaces;
+package com.ezequiel.worstmovie.application;
 
 import com.ezequiel.worstmovie.domain.AwardInterval;
 import org.springframework.stereotype.Component;
@@ -8,9 +8,9 @@ import java.util.List;
 @Component
 public class ProducerConverter {
 
-    public void updateMinAwardsRange(List<ProducerAwardDto> minRange, AwardInterval awardInterval) {
+    public void updateMinAwardsRange(List<ProducerAwardResponse> minRange, AwardInterval awardInterval) {
         awardInterval.getMin().forEach(producerInterval -> {
-            ProducerAwardDto record = new ProducerAwardDto();
+            ProducerAwardResponse record = new ProducerAwardResponse();
             record.setFollowingWin(producerInterval.getFollowingWin());
             record.setInterval(producerInterval.getInterval());
             record.setPreviousWin(producerInterval.getPreviousWin());
@@ -19,9 +19,9 @@ public class ProducerConverter {
         });
     }
 
-    public void updateMaxAwardsRange(List<ProducerAwardDto> maxRange, AwardInterval awardInterval) {
+    public void updateMaxAwardsRange(List<ProducerAwardResponse> maxRange, AwardInterval awardInterval) {
         awardInterval.getMax().forEach(producerInterval -> {
-            ProducerAwardDto record = new ProducerAwardDto();
+            ProducerAwardResponse record = new ProducerAwardResponse();
             record.setFollowingWin(producerInterval.getFollowingWin());
             record.setInterval(producerInterval.getInterval());
             record.setPreviousWin(producerInterval.getPreviousWin());

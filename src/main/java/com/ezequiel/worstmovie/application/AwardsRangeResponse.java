@@ -1,4 +1,4 @@
-package com.ezequiel.worstmovie.interfaces;
+package com.ezequiel.worstmovie.application;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,19 +9,19 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class AwardsRangeDto implements Serializable {
+public class AwardsRangeResponse implements Serializable {
 
-    private List<ProducerAwardDto> min;
-    private List<ProducerAwardDto> max;
+    private List<ProducerAwardResponse> min;
+    private List<ProducerAwardResponse> max;
 
-    public List<ProducerAwardDto> getMin() {
+    public List<ProducerAwardResponse> getMin() {
         if (min == null) {
             min = new ArrayList<>();
         }
         return min;
     }
 
-    public List<ProducerAwardDto> getMax() {
+    public List<ProducerAwardResponse> getMax() {
         if (max == null) {
             max = new ArrayList<>();
         }
